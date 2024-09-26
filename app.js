@@ -58,6 +58,7 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
         var telefoon = document.querySelector("[name=telefoon]").value;
         var legalinfo = document.querySelector("[name=legalinfo]").checked;
         var translate = document.querySelector("[name=translate]").checked;
+        var beschikbaar = document.querySelector("[name=deeltijds]").checked;
         var emailInput = document.querySelector("[name=email]:valid")
         var email = emailInput ? emailInput.value : null;
         var emailElement = document.getElementById("email");
@@ -81,13 +82,28 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
             document.getElementById("weblink").href = schoolinfo[school].site ?? `http://www.${schoolinfo[school].domein}`;
             document.getElementById("schoolnaam").innerHTML = schoolinfo[school].naam
         }
+        if(beschikbaar){
+            var dagenbeschikbaar= [];
+            if(document.querySelector("[id=maandag]").checked)
+                dagenbeschikbaar.push("ma")
+            if(document.querySelector("[id=dinsdag]").checked)
+                dagenbeschikbaar.push("di")
+            if(document.querySelector("[id=woensdag]").checked)
+                dagenbeschikbaar.push("woe")
+            if(document.querySelector("[id=donderdag]").checked)
+                dagenbeschikbaar.push("do")
+            if(document.querySelector("[id=vrijdag]").checked)
+                dagenbeschikbaar.push("vrij")
+        }
         var contactInfoElement = document.getElementById("contactinfo");
         var contactInfo = "";
 
         if (telefoon) contactInfo += '<tr><td width="15">T</td><td>' + telefoon + '</td></tr>';
         if (gsm) contactInfo += '<tr><td width="15">G</td><td>' + gsm + '</td></tr>';
         contactInfoElement.innerHTML = contactInfo;
-
+        
+        //Footer
+        document.getElementById('beschikbaarheid').innerHTML = beschikbaar ? `<div>Ik ben enkel bereikbaar op: ${dagenbeschikbaar.toString()} </div>` : '';
         document.getElementById('legalinfo').innerHTML = legalinfo ? '<div>Óscar Romeroscholen vzw | Kerkstraat 60 | 9200 Dendermonde | T 052 25 88 79 </div><div>Ondernemingsnummer: 0415819204 | Ondernemingsrechtbank Gent afdeling Dendermonde</div>' : '';
         document.getElementById('translate').innerHTML = translate ? '<div><b>If you want to translate this mail please use the following tool:<b></div><div><b><a href=https://www.deepl.com/nl/translator target="_blank">deepl.com/nl/translator</a></b></div>' : '';
     })
