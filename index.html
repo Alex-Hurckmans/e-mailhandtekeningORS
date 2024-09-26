@@ -8,8 +8,7 @@
 </head>
 
 <body>
-    <form 
-        class="form">
+    <form class="form" id="templateform">
         <label class="input">
             <span class="inputlabel">Voornaam:</span>
             <input name="voornaam" required="" class="inputfield">
@@ -61,7 +60,6 @@
             <span class="inputlabel">Functie:</span>
             <input name="functie" required="" value="Leraar" class="inputfield">
         </label>
-        <!-- TODO: Keuze dagen toevoegen (zie whatsapp Joy), nieuwe logo's-->
         <label class="input">
             <span class="inputlabel">School:</span>
             <select name="school" id="school" class="inputfield" required="">
@@ -90,7 +88,6 @@
             <span class="inputlabel">Ik werk deeltijds</span>
             <input name="deeltijds" type="checkbox">
         </label>
-        <!--Nog aan te passen naar dropdown selectie velden-->
         <label class="input hidden">
             <div id="checkboxes">
                 <span class="inputlabel" name="dagenSelectie">Welke dagen:</span>
@@ -112,7 +109,6 @@
             <span class="inputlabel">Vertaling toevoegen</span>
             <input name="translate" type="checkbox">
         </label>
-
         <button type="submit">Downloaden</button>
         <button type="button" id="copybutton">Kopiëren</button>
     </form>

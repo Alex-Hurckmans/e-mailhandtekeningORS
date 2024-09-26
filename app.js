@@ -160,3 +160,13 @@ document.getElementById('copybutton').addEventListener('click', function (event)
     }
     event.preventDefault();
 });
+
+document.getElementById('templateform').addEventListener('submit', function(event) {
+    var dl = document.createElement('a');
+    var content = "<!DOCTYPE html><html lang=\"nl\"><head><title>Handtekening</title><meta charset=\"UTF-8\"></head><body>" + document.querySelector('#handtekening').outerHTML.replaceAll('Ó','&Oacute;') + "</body></html>";
+    dl.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(content));
+    dl.setAttribute('download', 'handtekening.html');
+    dl.click();
+
+    event.preventDefault();
+});
