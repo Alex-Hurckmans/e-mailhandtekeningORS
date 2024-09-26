@@ -130,7 +130,7 @@ window.onload = function () {
                 adresSelectie.options[adresSelectie.options.length] = new Option(adressen[y], adressen[y]);
                 alleAdressen += adressen[y] + "<br>"
             }
-            adresSelectie.options[adresSelectie.options.length] = new Option("Alle Adressen", alleAdressen);
+            adresSelectie.options[adresSelectie.options.length] = new Option("Alle adressen", alleAdressen);
             document.getElementById("adreslijn").innerHTML = document.getElementById("adres").value
         }
     }
