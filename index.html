@@ -3,54 +3,12 @@
 <head>
     <title>Handtekening maken</title>
     <meta charset="UTF-8">
-    <style>
-        @keyframes highlight {
-            0% {
-                background: #ff9999;
-            }
-
-            100% {
-                background: none;
-            }
-        }
-
-        .highlight {
-            animation: highlight 1s;
-        }
-
-        .form {
-            font: 14px sans-serif;
-            color: #333;
-        }
-
-        .input {
-            display: block;
-            padding: 5px;
-            margin: 5px;
-        }
-
-        .inputlabel {
-            display: inline-block;
-            width: 100px;
-        }
-
-        .inputfield {
-            border: 1px solid #aaa;
-            border-radius: 3px;
-            width: 300px;
-            padding: 5px;
-            display: inline-block;
-            box-sizing: border-box
-        }
-
-        .input.hidden {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <style></style>
 </head>
 
 <body>
-    <form style="border-bottom: 1px solid black; margin-bottom: 20px; padding-bottom: 20px" id="templateform" target="#"
+    <form 
         class="form">
         <label class="input">
             <span class="inputlabel">Voornaam:</span>
@@ -62,7 +20,7 @@
         </label>
         <label class="input">
             <span class="inputlabel">Functie:</span>
-            <select name="functielijst" class="inputfield">
+            <select name="functielijst" class="inputfield" required="">
                 <option disabled selected value> -- Functie -- </option>
                 <option value="admin">Administratief medewerker</option>
                 <option value="bel">Beleidsmedewerker</option>
@@ -103,6 +61,7 @@
             <span class="inputlabel">Functie:</span>
             <input name="functie" required="" value="Leraar" class="inputfield">
         </label>
+        <!-- TODO: Keuze dagen toevoegen (zie whatsapp Joy), nieuwe logo's-->
         <label class="input">
             <span class="inputlabel">School:</span>
             <select name="school" id="school" class="inputfield" required="">
@@ -128,6 +87,24 @@
             <input name="email" type="email" class="inputfield">
         </label>
         <label class="input">
+            <span class="inputlabel">Ik werk deeltijds</span>
+            <input name="deeltijds" type="checkbox">
+        </label>
+        <!--Nog aan te passen naar dropdown selectie velden-->
+        <label class="input hidden">
+            <div id="checkboxes">
+                <span class="inputlabel" name="dagenSelectie">Welke dagen:</span>
+                <ul>
+                    <li><input id="Maandag" type="checkbox"> <label for="Maandag">Maandag</label></li>
+                    <li><input id="Dinsdag" type="checkbox"> <label for="Dinsdag">Dinsdag</label></li>
+                    <li><input id="Woensdag" type="checkbox"> <label for="Woensdag">Woensdag</label></li>
+                    <li><input id="Donderdag" type="checkbox"> <label for="Donderdag">Donderdag</label></li>
+                    <li><input id="Vrijdag" type="checkbox"> <label for="Vrijdag">Vrijdag</label></li>
+                </ul>
+            </div>
+        
+        </label>
+        <label class="input">
             <span class="inputlabel">Juridische info:</span>
             <input name="legalinfo" type="checkbox">
         </label>
@@ -144,11 +121,6 @@
             id="handtekening">
             <tbody>
                 <tr>
-                    <td style="height: 85px; padding:0; vertical-align: top; text-align: left">
-                        <img id="logo" height="85" style="height: 85px;margin-top:7px">
-                    </td>
-                </tr>
-                <tr>
                     <td height="22" style="font-size:10.0pt;">
                         <div style="margin-top:5px"><span id="naam">Voornaam Naam</span> - <span
                                 id="functie">Leraar</span></div>
@@ -156,7 +128,7 @@
                 </tr>
                 <tr>
                     <td style="vertical-align: bottom;line-height:1.3">
-                        <div>Óscar Romeroscholen VZW</div>
+                        <div span id="schoolnaam">Óscar Romeroscholen VZW</div>
                         <div><span id="adreslijn">straat nr | Postcode Gemeente</span></div>
                         <table style="font-size:8.0pt; font-family:Helvetica,sans-serif; color:#575756;line-height:1.3"
                             border="0" cellpadding="0" cellspacing="0" id="contactinfo">
@@ -166,156 +138,27 @@
                             href="https://www.romerocollege.be/" style="color:#575756">www.romerocollege.be</a>
                     </td>
                 </tr>
-                <tr></tr>
-                    <td colspan="2" id="legalinfo" style="color: #aaa"></td>
-                </tr>
-                <tr></tr>
-                <td colspan="2" id="translate" style="color: #aaa"></td>
+                <tr>
+                    <td style="height: 85px; padding:0; vertical-align: top; text-align: left">
+                        <img id="logo" height="85" style="height: 85px;margin-top:7px">
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" height="30" style="height:30px; vertical-align:bottom;"><a
-                            style="text-decoration: none; color: #aaa"
-                            target="_blank"
+                            style="text-decoration: none; color: #aaa" target="_blank"
                             href="https://www.romeroscholen.be/kies-een-school/">disclaimer</a></td>
                 </tr>
+                <tr>
+                    <td colspan="2" id="legalinfo" style="color: #aaa"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="translate" style="color: #aaa"></td>
+                </tr>
+
             </tbody>
         </table>
     </div>
-    <script>
-
-        var schoolinfo = {
-            "De Bellewij Denderbelle": { domein: "dorpsschoolbelle.be", site: "https://www.dorpsschoolbelle.be", adres: ["Kapellenstraat 43 | 9280 Lebbeke"], logo: "bellewij" },
-            "De Duizendpoot Berlare": { domein: "duizendpootberlare.be", site: "https://www.duizendpootberlare.be", adres: ["Nieuwstraat 8 | 9290 Berlare", "Alfons De Grauwelaan 11-13 | 9290 Berlare"], logo: "duizendpoot" },
-            "Harduynschool Oudegem": { domein: "harduynschool.be", site: "https://www.harduynschool.be", adres: ["Hofstraat 37A | 9200 Oudegem"], logo: "harduyn" },
-            "HEHAschool Sint-Gillis-Dendermonde": { domein: "heha.be", site: "https://www.heha.be", adres: ["Otterstraat 179 | 9200 Dendermonde", "Hullekenstraat 202 | 9200 Dendermonde", "Dr. De Witteplein zn | 9200 Dendermonde"], logo: "heha" },
-            "VBS Heizijde Lebbeke": { domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be/vestigingen/vbs-lebbeke-heizijde", adres: ["Heizijdestraat 7 | 9280 Lebbeke"], logo: "heizijde" },
-            "Het Laar Dendermonde": { domein: "romerocollege.be", site: "https://hetlaar.romerocollege.be", adres: ["Zuidlaan 34 | 9200 Dendermonde","Sas 30 | 9200 Dendermonde"], logo: "laar" },
-            "VBS Lebbeke": { domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke"], logo: "lebbeke" },
-            "VBS De Margriet Baardegem": { domein: "vbsbaardegem.be", site: "https://www.vbsbaardegem.be", adres: ["Margrietstraat 15 | 9310 Baardegem"], logo: "margriet" },
-            "VBS Meldert": { domein: "vbsmeldert.be", site: "https://www.vbsmeldert.be", adres: ["Meldert Dorp 19 | 9310 Meldert"], logo: "meldert" },
-            "De Minnestraal Lebbeke": { domein: "minnestraal.be", site: "https://www.minnestraal.be", adres: ["Lange Minnestraat 59 | 9280 Lebbeke"], logo: "minnestraal" },
-            "De Oogappel Appels": { domein: "deoogappel.be", site: "https://www.deoogappel.be", adres: ["Hoofdstraat 18 | 9200 Appels"], logo: "oogappel" },
-            "De Schatkist Wieze": { domein: "vbswieze.be", site: "https://www.vbswieze.be", adres: ["Kloosterstraat 1-5 | 9280 Wieze"], logo: "schatkist" },
-            "Vrije basisschool Dendermonde": { domein: "romerocollege.be", site: "https://basisschool.romerocollege.be", adres: ["Sas 32, 38-39 | 9200 Dendermonde", "Pijnderslaan 90 9200 Dendermonde", "Pater De Smetlaan 39 | 9200 Dendermonde"], logo: "vbsorc" },
-            "Visitatieschool Baasrode": { domein: "visitatie.be", site: "http://www.visitatiebaasrode.be", adres: ["Rosstraat 7 | 9200 Dendermonde", "Vlassenbroek 188 | 9200 Dendermonde"], logo: "visitatie" },
-            "VBS Opstal": { domein: "vbsopstal.be", site: "https://www.vbsopstal.be", adres: ["Broekstraat 29-35 | 9255 Opstal"], logo: "opstal" },
-            "Vrije kleuterschool - Sint-Jozef": { domein: "kleuterschoolopdorp.be", site: "https://www.kleuterschoolopdorp.be", adres: ["Vekestraat 2 | 9255 Opdorp"], logo: "opdorp" },
-            "Vrije basisschool - Sint-Vincentius & Montessorischool Briel": { domein: "vincentrum.be", site: "https://www.vincentrum.be", adres: ["Schoolstraat 20 | 9255 Buggenhout"], logo: "vincentrum" },
-            "Oscar Romeroscholen": { domein: "romeroscholen.be", site: "https://www.romeroscholen.be", adres: ["Kerkstraat 60 | 9200 Dendermonde"], logo: "ORS" },
-        }
-
-
-        // Bij functie als je kiest voor aangepast komt er een extra veld.
-        document.querySelector("[name=functielijst]").addEventListener('change', function (event) {
-            var target = event.currentTarget;
-            var selectedOption = target.options[target.selectedIndex];
-            var functionField = document.querySelector("[name=functie]")
-            if (selectedOption.value == "custom") {
-                functionField.closest(".input").classList.remove("hidden");
-                functionField.closest(".input").classList.add("highlight");
-            } else {
-                functionField.closest(".input").classList.add("hidden");
-                functionField.closest(".input").classList.remove("highlight");
-                var functionTitle = target.options[target.selectedIndex].text;
-                functionField.value = functionTitle ?? "";
-            }
-        })
-
-        document.querySelectorAll(".input input, .input select").forEach(item => {
-            item.addEventListener('change', function () {
-                var voornaam = document.querySelector("[name=voornaam]").value;
-                var naam = document.querySelector("[name=naam]").value;
-                var functie = document.querySelector("[name=functie]").value;
-                var school = document.querySelector("[name=school]").value;
-                var gsm = document.querySelector("[name=gsm]").value;
-                var telefoon = document.querySelector("[name=telefoon]").value;
-                var legalinfo = document.querySelector("[name=legalinfo]").checked;
-                var translate = document.querySelector("[name=translate]").checked;
-                var emailInput = document.querySelector("[name=email]:valid")
-                var email = emailInput ? emailInput.value : null;
-                var emailElement = document.getElementById("email");
-                if (voornaam && naam) document.getElementById("naam").innerHTML = voornaam.toUpperCase() + " " + naam.toUpperCase();
-                if (functie) document.getElementById("functie").innerHTML = functie;
-                if (school) document.getElementById("adreslijn").innerHTML = adres.value;
-                if (email) {
-                } else if (voornaam && naam && schoolinfo[school]) {
-                    email = `${voornaam}.${naam}@${schoolinfo[school].domein}`;
-                    email = email.normalize('NFKD').replace(/[^\w@\.]/g, '').toLowerCase();
-                } else if (schoolinfo[school]) {
-                    email = `@${schoolinfo[school].domein}`;
-                } else {
-                    email = "email@domein.be"
-                }
-                emailElement.innerHTML = email;
-                emailElement.href = `mailto:${email}`;
-                if (schoolinfo[school]) {
-                    document.getElementById("logo").src = `http://www.romeroscholen.be/uploads/images/Stockfotos/${schoolinfo[school].logo}-logo.jpg`;
-                    document.getElementById("weblink").innerHTML = schoolinfo[school].site ? schoolinfo[school].site.replace(/http.*\//, '') : `www.${schoolinfo[school].domein}`;
-                    document.getElementById("weblink").href = schoolinfo[school].site ?? `http://www.${schoolinfo[school].domein}`;
-                }
-                var contactInfoElement = document.getElementById("contactinfo");
-                var contactInfo = "";
-
-                if (telefoon) contactInfo += '<tr><td width="15">T</td><td>' + telefoon + '</td></tr>';
-                if (gsm) contactInfo += '<tr><td width="15">G</td><td>' + gsm + '</td></tr>';
-                contactInfoElement.innerHTML = contactInfo;
-
-                document.getElementById('legalinfo').innerHTML = legalinfo ? '<div>Ondernemingsnummer: 0415819204</div><div>Ondernemingsrechtbank Gent afdeling Dendermonde</div>' : '';
-                document.getElementById('translate').innerHTML = translate ? '<div><b>If you want to translate this mail please use the following tool:<b></div><div><b><a href=https://www.deepl.com/nl/translator target="_blank">deepl.com/nl/translator</a></b></div>' : '';
-            })
-        });
-        window.onload = function () {
-            var schoolSelectie = document.getElementById("school");
-            var adresSelectie = document.getElementById("adres");
-            for (var x in schoolinfo) {
-                schoolSelectie.options[schoolSelectie.options.length] = new Option(x, x);
-            }
-            schoolSelectie.onchange = function () {
-                //empty dropdowns
-                adresSelectie.length = 1;
-                //display correct values
-                var adressen = schoolinfo[schoolSelectie.value].adres;
-                if (adressen.length <= 1) {
-                    removeOptions(adresSelectie)
-                    adresSelectie.options[adresSelectie.options.length] = new Option(adressen[0], adressen[0]);
-                    document.getElementById("adreslijn").innerHTML = document.getElementById("adres").value
-                } else {
-                    removeOptions(adresSelectie)
-                    for (var y in schoolinfo[this.value].adres) {
-                        adresSelectie.options[adresSelectie.options.length] = new Option(adressen[y], adressen[y]);
-                    }
-                    document.getElementById("adreslijn").innerHTML = document.getElementById("adres").value
-                }
-            }
-            function removeOptions(selectElement) {
-                var i, L = selectElement.options.length - 1;
-                for (i = L; i >= 0; i--) {
-                    selectElement.remove(i);
-                }
-            }
-        }
-        document.getElementById('copybutton').addEventListener('click', function (event) {
-            var form = document.getElementById('templateform');
-            if (form.checkValidity()) {
-                try {
-                    var blob = new Blob([document.querySelector('#handtekening').outerHTML.replaceAll('Ó', '&Oacute;')], { type: 'text/html' });
-                    var item = new ClipboardItem({ 'text/html': blob });
-                    navigator.clipboard.write([item]).then(function () {
-                        alert("Handtekening gekopieerd.")
-                    }, function (error) {
-                        alert("Fout bij kopiëren handtekening: selecteer en kopieer de handtekening manueel.")
-                    });
-                } catch (e) {
-                    alert("Fout bij kopiëren handtekening: selecteer en kopieer de handtekening manueel.")
-                }
-            } else {
-                form.reportValidity();
-            }
-            event.preventDefault();
-        });
-    </script>
-
-
+    <script src="app.js"></script>
 </body>
 
 </html>

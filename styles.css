@@ -1,0 +1,62 @@
+
+@keyframes highlight {
+    0% {
+        background: #ff9999;
+    }
+
+    100% {
+        background: none;
+    }
+}
+
+.highlight {
+    animation: highlight 1s;
+}
+
+.form {
+    font: 14px sans-serif;
+    color: #333;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px; 
+    padding-bottom: 20px;
+    width: 550px;
+}
+
+.input {
+    display: block;
+    padding: 5px;
+    margin: 5px;
+}
+
+.inputlabel {
+    display: inline-block;
+    width: 100px;
+}
+
+.inputfield {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    width: 300px;
+    padding: 5px;
+    display: inline-block;
+    box-sizing: border-box
+}
+
+.input.hidden {
+    display: none;
+}
+#checkbox{
+    width: 25px;
+}
+#checkboxes ul {
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    padding-inline-start: 0;
+    
+}
+#checkboxes li {
+    display: block;
+    display: inline-block;
+    
+}
