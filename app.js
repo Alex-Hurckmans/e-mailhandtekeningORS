@@ -4,9 +4,10 @@ var schoolinfo = {
     "De Duizendpoot Berlare": { naam: "De Duizendpoot Berlare", domein: "duizendpootberlare.be", site: "https://www.duizendpootberlare.be", adres: ["Nieuwstraat 8 | 9290 Berlare", "Alfons De Grauwelaan 11-13 | 9290 Berlare"], logo: "duizendpoot" },
     "Harduynschool Oudegem": { naam: "Harduynschool Oudegem", domein: "harduynschool.be", site: "https://www.harduynschool.be", adres: ["Hofstraat 37A | 9200 Oudegem"], logo: "harduyn" },
     "HEHAschool Sint-Gillis-Dendermonde": { naam: "HEHAschool Sint-Gillis-Dendermonde", domein: "heha.be", site: "https://www.heha.be", adres: ["Otterstraat 179 | 9200 Dendermonde", "Hullekenstraat 202 | 9200 Dendermonde", "Dr. De Witteplein zn | 9200 Dendermonde"], logo: "heha" },
+    "VBS Lebbeke": { naam: "VBS Lebbeke", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke", "Heizijdestraat 7 | 9280 Lebbeke"], logo: "lebbeke" },
+    "VBS Lebbeke Dorp": { naam: "VBS Lebbeke Dorp", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke"], logo: "lebbeke" },
     "VBS Lebbeke Heizijde": { naam: "VBS Lebbeke Heizijde", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be/vestigingen/vbs-lebbeke-heizijde", adres: ["Heizijdestraat 7 | 9280 Lebbeke"], logo: "heizijde" },
     "Het Laar Dendermonde": { naam: "Het Laar Dendermonde", domein: "romerocollege.be", site: "https://hetlaar.romerocollege.be", adres: ["Zuidlaan 34 | 9200 Dendermonde", "Sas 30 | 9200 Dendermonde"], logo: "laar" },
-    "VBS Lebbeke": { naam: "VBS Lebbeke", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke", "Heizijdestraat 7 | 9280 Lebbeke"], logo: "lebbeke" },
     "VBS De Margriet Baardegem": { naam: "VBS De Margriet Baardegem", domein: "vbsbaardegem.be", site: "https://www.vbsbaardegem.be", adres: ["Margrietstraat 15 | 9310 Baardegem"], logo: "margriet" },
     "VBS Meldert": { naam: "VBS Meldert", domein: "vbsmeldert.be", site: "https://www.vbsmeldert.be", adres: ["Meldert Dorp 19 | 9310 Meldert"], logo: "meldert" },
     "Basisschool De Minnestraal": { naam: "Basisschool De Minnestraal", domein: "minnestraal.be", site: "https://www.minnestraal.be", adres: ["Lange Minnestraat 59 | 9280 Lebbeke"], logo: "minnestraal" },
@@ -82,17 +83,17 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
             document.getElementById("weblink").href = schoolinfo[school].site ?? `http://www.${schoolinfo[school].domein}`;
             document.getElementById("schoolnaam").innerHTML = schoolinfo[school].naam
         }
-        if(beschikbaar){
-            var dagenbeschikbaar= [];
-            if(document.querySelector("[id=maandag]").checked)
+        if (beschikbaar) {
+            var dagenbeschikbaar = [];
+            if (document.querySelector("[id=maandag]").checked)
                 dagenbeschikbaar.push("ma")
-            if(document.querySelector("[id=dinsdag]").checked)
+            if (document.querySelector("[id=dinsdag]").checked)
                 dagenbeschikbaar.push("di")
-            if(document.querySelector("[id=woensdag]").checked)
+            if (document.querySelector("[id=woensdag]").checked)
                 dagenbeschikbaar.push("woe")
-            if(document.querySelector("[id=donderdag]").checked)
+            if (document.querySelector("[id=donderdag]").checked)
                 dagenbeschikbaar.push("do")
-            if(document.querySelector("[id=vrijdag]").checked)
+            if (document.querySelector("[id=vrijdag]").checked)
                 dagenbeschikbaar.push("vrij")
         }
         var contactInfoElement = document.getElementById("contactinfo");
@@ -101,7 +102,7 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
         if (telefoon) contactInfo += '<tr><td width="15">T</td><td>' + telefoon + '</td></tr>';
         if (gsm) contactInfo += '<tr><td width="15">G</td><td>' + gsm + '</td></tr>';
         contactInfoElement.innerHTML = contactInfo;
-        
+
         //Footer
         document.getElementById('beschikbaarheid').innerHTML = beschikbaar ? `<div>Ik ben enkel bereikbaar op: ${dagenbeschikbaar.toString()} </div>` : '';
         document.getElementById('legalinfo').innerHTML = legalinfo ? '<div>Óscar Romeroscholen vzw | Kerkstraat 60 | 9200 Dendermonde | T 052 25 88 79 </div><div>Ondernemingsnummer: 0415819204 | Ondernemingsrechtbank Gent afdeling Dendermonde</div>' : '';
@@ -120,7 +121,18 @@ window.onload = function () {
         var alleAdressen = "";
         //display correct values
         var adressen = schoolinfo[schoolSelectie.value].adres;
-        if (adressen.length <= 1) {
+        if(schoolinfo[schoolSelectie.value].naam == "Óscar Romerocollege - basisschool")
+        {
+            removeOptions(adresSelectie)
+            for (var y in schoolinfo[this.value].adres) {
+                adresSelectie.options[adresSelectie.options.length] = new Option(adressen[y], adressen[y]);
+                alleAdressen += adressen[y] + "<br>"
+            }
+            adresSelectie.options[adresSelectie.options.length] = new Option("Pijnderslaan + Sas ", "Sas 32, 38-39 | 9200 Dendermonde<br>Pijnderslaan 90 9200 Dendermonde");
+            adresSelectie.options[adresSelectie.options.length] = new Option("Sas + Pater De Smet ","Sas 32, 38-39 | 9200 Dendermonde<br>Pater De Smetlaan 39 | 9200 Dendermonde" );
+            adresSelectie.options[adresSelectie.options.length] = new Option("Alle adressen", alleAdressen);
+            document.getElementById("adreslijn").innerHTML = document.getElementById("adres").value
+        } else if (adressen.length <= 1) {
             removeOptions(adresSelectie)
             adresSelectie.options[adresSelectie.options.length] = new Option(adressen[0], adressen[0]);
             document.getElementById("adreslijn").innerHTML = document.getElementById("adres").value
@@ -161,9 +173,9 @@ document.getElementById('copybutton').addEventListener('click', function (event)
     event.preventDefault();
 });
 
-document.getElementById('templateform').addEventListener('submit', function(event) {
+document.getElementById('templateform').addEventListener('submit', function (event) {
     var dl = document.createElement('a');
-    var content = "<!DOCTYPE html><html lang=\"nl\"><head><title>Handtekening</title><meta charset=\"UTF-8\"></head><body>" + document.querySelector('#handtekening').outerHTML.replaceAll('Ó','&Oacute;') + "</body></html>";
+    var content = "<!DOCTYPE html><html lang=\"nl\"><head><title>Handtekening</title><meta charset=\"UTF-8\"></head><body>" + document.querySelector('#handtekening').outerHTML.replaceAll('Ó', '&Oacute;') + "</body></html>";
     dl.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(content));
     dl.setAttribute('download', 'handtekening.html');
     dl.click();
