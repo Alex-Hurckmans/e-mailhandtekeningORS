@@ -5,7 +5,7 @@ var schoolinfo = {
     "Harduynschool Oudegem": { naam: "Harduynschool Oudegem", domein: "harduynschool.be", site: "https://www.harduynschool.be", adres: ["Hofstraat 37A | 9200 Oudegem"], logo: "harduyn" },
     "HEHAschool Sint-Gillis-Dendermonde": { naam: "HEHAschool Sint-Gillis-Dendermonde", domein: "heha.be", site: "https://www.heha.be", adres: ["Otterstraat 179 | 9200 Dendermonde", "Hullekenstraat 202 | 9200 Dendermonde", "Dr. De Witteplein zn | 9200 Dendermonde"], logo: "heha" },
     "VBS Lebbeke": { naam: "VBS Lebbeke", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke", "Heizijdestraat 7 | 9280 Lebbeke"], logo: "lebbeke" },
-    "VBS Lebbeke Dorp": { naam: "VBS Lebbeke Dorp", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke"], logo: "lebbeke" },
+    "VBS Lebbeke Dorp": { naam: "VBS Lebbeke Dorp", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be", adres: ["Brusselsesteenweg 43 | 9280 Lebbeke"], logo: "lebbeke-dorp" },
     "VBS Lebbeke Heizijde": { naam: "VBS Lebbeke Heizijde", domein: "vbslebbeke.be", site: "https://www.vbslebbeke.be/vestigingen/vbs-lebbeke-heizijde", adres: ["Heizijdestraat 7 | 9280 Lebbeke"], logo: "heizijde" },
     "Het Laar Dendermonde": { naam: "Het Laar Dendermonde", domein: "romerocollege.be", site: "https://hetlaar.romerocollege.be", adres: ["Zuidlaan 34 | 9200 Dendermonde", "Sas 30 | 9200 Dendermonde"], logo: "laar" },
     "VBS De Margriet Baardegem": { naam: "VBS De Margriet Baardegem", domein: "vbsbaardegem.be", site: "https://www.vbsbaardegem.be", adres: ["Margrietstraat 15 | 9310 Baardegem"], logo: "margriet" },
