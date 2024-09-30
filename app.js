@@ -63,7 +63,7 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
         var emailInput = document.querySelector("[name=email]:valid")
         var email = emailInput ? emailInput.value : null;
         var emailElement = document.getElementById("email");
-        if (voornaam && naam) document.getElementById("naam").innerHTML = voornaam.toUpperCase() + " " + naam.toUpperCase();
+        if (voornaam && naam) document.getElementById("naam").innerHTML = voornaam + " " + naam;
         if (functie) document.getElementById("functie").innerHTML = functie;
         if (school) document.getElementById("adreslijn").innerHTML = adres.value;
         if (email) {
