@@ -57,6 +57,7 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
         var school = document.querySelector("[name=school]").value;
         var gsm = document.querySelector("[name=gsm]").value;
         var telefoon = document.querySelector("[name=telefoon]").value;
+        var telefoon2 = document.querySelector("[name=telefoon2]").value;
         var legalinfo = document.querySelector("[name=legalinfo]").checked;
         var translate = document.querySelector("[name=translate]").checked;
         var beschikbaar = document.querySelector("[name=deeltijds]").checked;
@@ -100,6 +101,7 @@ document.querySelectorAll(".input input, .input select").forEach(item => {
         var contactInfo = "";
 
         if (telefoon) contactInfo += '<tr><td width="15">T</td><td>' + telefoon + '</td></tr>';
+        if (telefoon2) contactInfo += '<tr><td width="15">T</td><td>' + telefoon2 + '</td></tr>';
         if (gsm) contactInfo += '<tr><td width="15">G</td><td>' + gsm + '</td></tr>';
         contactInfoElement.innerHTML = contactInfo;
 
